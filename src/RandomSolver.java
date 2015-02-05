@@ -1,14 +1,16 @@
 import java.io.FileNotFoundException;
+import java.util.HashSet;
 import java.util.Set;
 
 
 class RandomSolver {
 	
-	Reader reader;
-	final String fileName = "paris_54000.txt";
-	Set<Car> availableCars;
-	
-	public void main() {
+	public static void main() {
+
+		Reader reader = null;
+		final String fileName = "paris_54000.txt";
+		Set<Car> availableCars = new HashSet<Car>();
+		
 		try {
 			reader = new Reader(fileName);
 		} catch (FileNotFoundException e) {
@@ -30,6 +32,7 @@ class RandomSolver {
 		}
 		
 		Writer writer = new Writer(reader.cars);
+		writer.generateSolution("randomSolution.txt");
 	}
 
 }

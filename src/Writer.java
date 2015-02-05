@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 
 class Writer {
 
-	public Writer(Car[] cars) {
+	public Writer(ArrayList<Car> cars) {
 		
 	}
 	
