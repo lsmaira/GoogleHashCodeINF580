@@ -24,7 +24,7 @@ class Reader {
 		//Create, read and store the junction list
 		junctions = new ArrayList<Node>();
 		for (int i=0; i<n; i++){
-			junctions.add(new Node (sc.nextInt(), sc.nextDouble(), sc.nextDouble()));
+			junctions.add(new Node (i, sc.nextDouble(), sc.nextDouble()));
 		}
 		
 		//Read and store the streets
