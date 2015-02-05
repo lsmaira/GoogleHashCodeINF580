@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 class Reader {
 	
-	static int n, m, maxT, c, s;
+	int n, m, maxT, c, s;
 	
-	static ArrayList<Node> junctions;
-	static ArrayList<Car> cars;
+	ArrayList<Node> junctions;
+	ArrayList<Car> cars;
 	
 	public Reader(String fileName) throws FileNotFoundException {
 		
@@ -21,6 +21,7 @@ class Reader {
 		c = sc.nextInt();
 		s = sc.nextInt();
 		
+		
 		//Create, read and store the junction list
 		junctions = new ArrayList<Node>(n);
 		for (int i=0; i<n; i++){
@@ -30,7 +31,7 @@ class Reader {
 		//Creating cars list
 		cars = new ArrayList<Car>(c);
 		for (int i=0; i<c; i++){
-			cars.add(new Car(junctions.get(s)));
+			cars.add(new Car(junctions.get(s), maxT));
 		}
 		
 		//Read and store the streets

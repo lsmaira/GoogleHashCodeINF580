@@ -1,27 +1,17 @@
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-class RandomSolver {
+class RandomSolver implements Solver{
+	
+	@Override
+	public Writer solve(Reader r) {
 
-	public static void main(String[] args) {
-
-		final String fileName = "paris_54000.txt";
 		Set<Car> availableCars = new HashSet<Car>();
-		
-		try {
-			new Reader(fileName);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		for(Car car : Reader.cars) {
+		for(Car car : r.cars) {
 			availableCars.add(car);
 		}
-		
-		System.out.println(availableCars.toString());
 		 
 		while(! availableCars.isEmpty()) {
 			
@@ -30,7 +20,9 @@ class RandomSolver {
 				Car car = iterator.next();
 				
 				ArrayList<Node> attainableNodes = new ArrayList<Node>();
-				for(Node neighbor : car.getPossibleMoves()) {
+				
+				
+				for(Node neighbor : car.neighborDestinations()) {
 					if (car.canMove (neighbor)){
 						attainableNodes.add(neighbor);
 					}
@@ -44,8 +36,6 @@ class RandomSolver {
 			}
 		}
 		
-		Writer writer = new Writer(Reader.cars);
-		writer.generateSolution("randomSolution.txt");
+		return new Writer(r.cars);
 	}
-
 }

@@ -7,9 +7,11 @@ import java.util.ArrayList;
 class Writer {
 	
 	ArrayList<Car> cars;
+	int totalScore;
 
 	public Writer(ArrayList<Car> cars) {
 		this.cars = cars;
+		totalScore = 0;
 	}
 	
 	public void generateSolution(String fileName) {
@@ -24,7 +26,7 @@ class Writer {
 			ue.printStackTrace();
 		}
 		
-		int totalScore = 0;
+		
 		for (Car c:cars) totalScore += c.currentScore;
 		
 		System.out.println("Total score obtained = "+totalScore);
@@ -36,7 +38,7 @@ class Writer {
 		for (Car c : cars){
 			writer.println("CAR " + ++i + ": score = " +c.currentScore+", remaining time = "+c.remainingTime);
 			writer.println("Path made by car " + i + ":");
-			for (Node n : c.way){
+			for (Node n : c.path){
 				writer.print("" + n.id + " ");
 			}
 			writer.println("\n---------------------------------------------------------------------------------------------");
