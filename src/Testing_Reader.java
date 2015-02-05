@@ -8,10 +8,10 @@ public class Testing_Reader {
 		new Reader ("paris_54000.txt");
 		for (int i=0; i<10; i++){
 			Node j = Reader.junctions.get(i);
-			System.out.print("Junction "+i+"\nNeighboors:");
+			System.out.print("\n--------------------------------------------------\nJunction "+i+"\nNeighboors:");
 			
 			for (Node n: j.neighbors.keySet()){
-					System.out.printf("%3d",n.id);
+					System.out.printf("%8d",n.id);
 			}
 		}
 	}

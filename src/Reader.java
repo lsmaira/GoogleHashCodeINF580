@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 class Reader {
 	
-	static int n, m, maxT, c;
+	static int n, m, maxT, c, s;
 	
 	static ArrayList<Node> junctions;
 	static ArrayList<Car> cars;
@@ -19,6 +19,7 @@ class Reader {
 		m = sc.nextInt();
 		maxT = sc.nextInt();
 		c = sc.nextInt();
+		s = sc.nextInt();
 		
 		//Create, read and store the junction list
 		junctions = new ArrayList<Node>(n);
