@@ -1,7 +1,7 @@
 import java.io.FileNotFoundException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
-
 
 class RandomSolver {
 
@@ -20,8 +20,13 @@ class RandomSolver {
 			availableCars.add(car);
 		}
 		
+		System.out.println(availableCars.toString());
+		 
 		while(! availableCars.isEmpty()) {
-			for(Car car : availableCars) {
+			
+			Iterator<Car> iterator = availableCars.iterator();
+			while(iterator.hasNext()) {
+				Car car = iterator.next();
 				boolean got = false;
 				for(Node neighbor : car.getPossibleMoves()) {
 					if(car.current.neighbors.get(neighbor).cost<car.remainingTime) {
@@ -30,7 +35,7 @@ class RandomSolver {
 						break;
 					}
 				}
-				if(! got) availableCars.remove(car);
+				if(! got) iterator.remove();
 			}
 		}
 		
