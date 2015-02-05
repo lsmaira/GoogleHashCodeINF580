@@ -28,7 +28,6 @@ class Car {
 				currentScore += rue.gain;
 				rue.use();
 			}
-			
 			way.add(destination);
 		}
 		else {
@@ -38,6 +37,10 @@ class Car {
 	
 	public Set<Node> getPossibleMoves() {
 		return current.neighbors.keySet();
+	}
+
+	public boolean canMove(Node destination) {
+		return current.neighbors.get(destination).cost <= remainingTime;
 	}
 
 }

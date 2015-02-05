@@ -29,10 +29,13 @@ class RandomSolver {
 				Car car = iterator.next();
 				boolean got = false;
 				for(Node neighbor : car.getPossibleMoves()) {
-					if(car.current.neighbors.get(neighbor).cost<car.remainingTime) {
+					if (car.canMove (neighbor)){
 						car.goToNode(neighbor);
 						got = true;
 						break;
+					}
+					if(car.) {
+						
 					}
 				}
 				if(! got) iterator.remove();
