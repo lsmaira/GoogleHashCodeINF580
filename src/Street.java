@@ -1,18 +1,33 @@
 
 class Street {
 	
-	Node orig;
-	Node dest;
-	int cost;
-	int gain;
-	boolean bothDirec;
+	final int id;
+	final Node orig;
+	final Node dest;
+	final int cost;
+	final int gain;
+	final boolean bothDirec;
+	private boolean used;
 	
-	public Street(Node o, Node d, int c, int g, int dir) {
+	public Street(int idx, Node o, Node d, int c, int g, int dir) {
+		id = idx;
 		orig = o;
 		dest = d;
 		cost = c;
 		gain = g;
 		bothDirec = (dir==2);
+	}
+	
+	public void use() {
+		used = true;
+	}
+	
+	public void clean() {
+		used = false;
+	}
+	
+	public boolean isUsed() {
+		return used;
 	}
 
 }
