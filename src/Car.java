@@ -22,9 +22,17 @@ class Car {
 	
 	public void goToNode(Node destination) {
 		if(current.neighbors.containsKey(destination)) {
-			remainingTime -= current.neighbors.get(destination).cost;
-			currentScore += current.neighbors.get(destination).gain;
+			Street rue = current.neighbors.get(destination);
+			remainingTime -= rue.cost;
+			if (!rue.isUsed()){
+				currentScore += rue.gain;
+				rue.use();
+			}
+			
 			way.add(destination);
+		}
+		else {
+			throw new IllegalArgumentException();
 		}
 	}
 	
