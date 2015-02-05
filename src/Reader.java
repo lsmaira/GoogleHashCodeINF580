@@ -24,22 +24,16 @@ class Reader {
 		//Create, read and store the junction list
 		junctions = new ArrayList<Node>();
 		for (int i=0; i<n; i++){
-			junctions.add(new Node (sc.nextInt(), sc.nextDouble(), sc.nextDouble()));
+			junctions.add(new Node (i, sc.nextDouble(), sc.nextDouble()));
 		}
 		
 		//Read and store the streets
 		for (int i=0; i<m; i++){
-			Node orig = junctions.get(sc.nextInt());
-			Node dest = junctions.get(sc.nextInt());
-			int dir = sc.nextInt();
-			int cost = sc.nextInt();
-			int gain = sc.nextInt();
-			Street newStreet = new Street (i, orig, dest, dir, cost, gain);
-			orig.neighbors.put(dest, newStreet);
-			if (dir == 2){
-				dest.neighbors.put(orig, newStreet);
+			Street newStreet = new Street (i, junctions.get(sc.nextInt()), junctions.get(sc.nextInt()), sc.nextInt(), sc.nextInt(), sc.nextInt());
+			newStreet.orig.neighbors.put(newStreet.dest, newStreet);
+			if (newStreet.bothDirec){
+				newStreet.dest.neighbors.put(newStreet.orig, newStreet);
 			}
-			
 		}
 
 		sc.close();
