@@ -3,6 +3,8 @@ import java.io.FileNotFoundException;
 
 class GreedySolver {
 
+	final int depth = 10;
+
 	public static void main(String[] args) {
 		
 		Reader reader = null;
