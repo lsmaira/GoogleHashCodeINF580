@@ -14,6 +14,10 @@ public class Testing_Reader {
 					System.out.printf("%8d",n.id);
 			}
 		}
+		System.out.println("\n--------------------------------------------------\n Cars");
+		for (Car c : Reader.cars){
+			System.out.println("Starting Node = " + c.current.id);
+		}
 	}
 
 }

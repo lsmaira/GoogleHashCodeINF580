@@ -15,6 +15,7 @@ class RandomSolver {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
 		for(Car car : Reader.cars) {
 			availableCars.add(car);
 		}
