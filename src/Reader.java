@@ -27,6 +27,12 @@ class Reader {
 			junctions.add(new Node (i, sc.nextDouble(), sc.nextDouble()));
 		}
 		
+		//Creating cars list
+		cars = new ArrayList<Car>(c);
+		for (int i=0; i<c; i++){
+			cars.add(new Car(junctions.get(s)));
+		}
+		
 		//Read and store the streets
 		for (int i=0; i<m; i++){
 			Street rue = new Street (i, junctions.get(sc.nextInt()), junctions.get(sc.nextInt()), sc.nextInt(), sc.nextInt(), sc.nextInt());
