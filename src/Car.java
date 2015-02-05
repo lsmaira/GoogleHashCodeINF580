@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 
 class Car {
@@ -25,6 +26,10 @@ class Car {
 			currentScore += current.neighbors.get(destination).gain;
 			way.add(destination);
 		}
+	}
+	
+	public Set<Node> getPossibleMoves() {
+		return current.neighbors.keySet();
 	}
 
 }
