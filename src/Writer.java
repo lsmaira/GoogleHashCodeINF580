@@ -27,6 +27,8 @@ class Writer {
 		int totalScore = 0;
 		for (Car c:cars) totalScore += c.currentScore;
 		
+		System.out.println("Total score obtained = "+totalScore);
+		
 		writer.println("Total score obtained = "+totalScore);
 		writer.println("################################################################################################");
 		

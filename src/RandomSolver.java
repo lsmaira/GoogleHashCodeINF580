@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -27,18 +28,19 @@ class RandomSolver {
 			Iterator<Car> iterator = availableCars.iterator();
 			while(iterator.hasNext()) {
 				Car car = iterator.next();
-				boolean got = false;
+				
+				ArrayList<Node> attainableNodes = new ArrayList<Node>();
 				for(Node neighbor : car.getPossibleMoves()) {
 					if (car.canMove (neighbor)){
-						car.goToNode(neighbor);
-						got = true;
-						break;
-					}
-					if(car.) {
-						
+						attainableNodes.add(neighbor);
 					}
 				}
-				if(! got) iterator.remove();
+				
+				if (attainableNodes.size() > 0){
+					car.goToNode(attainableNodes.get((int) (Math.random()*attainableNodes.size()))); 
+				}
+				
+				else iterator.remove();
 			}
 		}
 		
