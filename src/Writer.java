@@ -26,7 +26,6 @@ class Writer {
 			ue.printStackTrace();
 		}
 		
-		
 		for (Car c:cars) totalScore += c.currentScore;
 		
 		System.out.println("Total score obtained = "+totalScore);
@@ -45,5 +44,4 @@ class Writer {
 		}
 		writer.close();
 	}
-	
 }

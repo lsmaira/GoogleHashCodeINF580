@@ -21,7 +21,6 @@ class Reader {
 		c = sc.nextInt();
 		s = sc.nextInt();
 		
-		
 		//Create, read and store the junction list
 		junctions = new ArrayList<Node>(n);
 		for (int i=0; i<n; i++){
