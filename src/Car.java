@@ -16,6 +16,12 @@ class Car {
 		path.add(begining);
 	}
 	
+	public Car (Car car){
+		this.current = car.current;
+		this.remainingTime = car.remainingTime;
+		this.currentScore = car.currentScore;
+	}
+	
 	public int getScore() {
 		return currentScore;
 	}
@@ -35,6 +41,19 @@ class Car {
 		else {
 			throw new IllegalArgumentException();
 		}
+	}
+	
+	
+	public void goBack(Node origin, boolean hasChanged) {
+		
+		Street rue = origin.neighbors.get(current);
+		
+		if (hasChanged) {
+			rue.clean();
+			currentScore -= rue.gain;
+		}
+		current = origin;
+		remainingTime += rue.cost;
 	}
 	
 	public Set<Node> neighborDestinations() {
