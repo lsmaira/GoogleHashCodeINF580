@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 class Reader {
 	
 	static int n, m, maxT, c;
@@ -22,17 +21,17 @@ class Reader {
 		c = sc.nextInt();
 		
 		//Create, read and store the junction list
-		junctions = new ArrayList<Node>();
+		junctions = new ArrayList<Node>(n);
 		for (int i=0; i<n; i++){
 			junctions.add(new Node (i, sc.nextDouble(), sc.nextDouble()));
 		}
 		
 		//Read and store the streets
 		for (int i=0; i<m; i++){
-			Street newStreet = new Street (i, junctions.get(sc.nextInt()), junctions.get(sc.nextInt()), sc.nextInt(), sc.nextInt(), sc.nextInt());
-			newStreet.orig.neighbors.put(newStreet.dest, newStreet);
-			if (newStreet.bothDirec){
-				newStreet.dest.neighbors.put(newStreet.orig, newStreet);
+			Street rue = new Street (i, junctions.get(sc.nextInt()), junctions.get(sc.nextInt()), sc.nextInt(), sc.nextInt(), sc.nextInt());
+			rue.orig.neighbors.put(rue.dest, rue);
+			if (rue.bothDirec){
+				rue.dest.neighbors.put(rue.orig, rue);
 			}
 		}
 
