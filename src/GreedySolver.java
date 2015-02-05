@@ -2,6 +2,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+class BestNode {
+	double value = 0.0;
+	Node node = null;
+}
+
 class GreedySolver implements Solver{
 	
 	int searchDepth;
@@ -12,34 +17,27 @@ class GreedySolver implements Solver{
 	
 	// Perform a DFS on the possibility graph with given searchDepth and return the best next node to choose 
 	public Node explore (Car car){
-		System.out.println("-------------");
-		Node best = null;
 		Node first = null;
-		Integer bestScore = new Integer(car.currentScore);
-		DFS (car, 0, bestScore, best, first);
-		return best;
+		BestNode best = new BestNode();
+		int rt0 = car.remainingTime;
+		int s0 = car.currentScore;
+		DFS (car, 0, best, first, rt0, s0);
+		return best.node;
 	}
 	
-	public void DFS (Car car, int depth, Integer bestScore, Node best, Node first){
-		
-		System.out.println(car.current.id);
-		System.out.println("bs" + bestScore);
-		if(best!=null) System.out.println("best" + best.id);
-		if(first!=null) System.out.println("first" + first.id);
+	public void DFS (Car car, int depth, BestNode best, Node first, int rt0, int s0){
 		
 		if (depth == 1){
 			first = car.current;
 		}
 		
 		if (depth == searchDepth || !canContinue(car)){
-			System.out.println("bla");
-			System.out.println("score" + car.currentScore);
-			if (car.currentScore > bestScore){
-				System.out.println("a" + bestScore);
-				bestScore = new Integer(car.currentScore);
-				System.out.println("d" + bestScore);
-				best = first;
-				System.out.println(best.id);
+			double currentScore;
+			if (depth == 0) currentScore = 0.0;
+			else currentScore = (double)(car.currentScore-s0);//(rt0-car.remainingTime);
+			if (currentScore > best.value){
+				best.value = currentScore;
+				best.node = first;
 			}
 			return;
 		}
@@ -50,7 +48,7 @@ class GreedySolver implements Solver{
 			if (car.canMove(destination)){
 				boolean change = !rue.isUsed();
 				car.goToNode(destination);
-				DFS(car, depth+1, bestScore, best, first);
+				DFS(car, depth+1, best, first, rt0, s0);
 				car.goBack(origin, change);
 			}
 		}
@@ -79,7 +77,6 @@ class GreedySolver implements Solver{
 				Car car = iterator.next();
 				
 				Node destination = explore(car);
-				System.out.println(destination.id);
 				if (destination != null){
 					car.goToNode(destination);
 				}
