@@ -4,8 +4,8 @@ import java.util.Set;
 
 
 class RandomSolver {
-	
-	public static void main() {
+
+	public static void main(String[] args) {
 
 		Reader reader = null;
 		final String fileName = "paris_54000.txt";
