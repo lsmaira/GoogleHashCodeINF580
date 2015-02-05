@@ -1,0 +1,44 @@
+// Ainda não compila
+
+SETS
+	O   origins / O0, O1, O2, O3 /
+	D   destinations / D0, D1, D2, D3 /
+    C 	cars / C1, C2 / ;
+
+ TABLE 	T(O,D)  time cost of traversing the street from an vertice to another
+		D0	D1	D2	D3
+	O0	100	2	2	3	
+	O1	100	100	1	3
+	O2	2	100	100	100
+	O3	100	3	100	100	;
+
+ TABLE	L(O,D) length of each street
+
+		D0	D1	D2	D3
+	O0	0 	15	20	10	
+	O1	15	0	10	60
+	O2	20	10	0	0
+	O3	10	60	0	0	;
+
+SCALAR TimeLimit maximum amount of time alowed for the cars  /6/ ;
+
+VARIABLES
+    V(O,D)  if a street is visited or not
+    VC(C, O, D) if a street is visited or not by a given car ;
+
+POSITIVE VARIABLE Total_Length ;
+
+EQUATIONS
+
+	REWARD      	total street length photographed
+    TIME(C)        	time limit constraint for each car
+	PATH(C, O)		the paths for each car must be valid
+    VISITED(O, D)	if a street is visited or not (by at least one car) ;
+
+  	REWARD ..     		Total_Length =E= SUM((P,P), L(P,P)*V(P,P)) ;
+  	TIME(C) ..  		TimeLimit =G= SUM((P,P), T(P,P)*VC(C,P,P)) ;
+  	PATH(C, O) .. 		SUM((D), VC(C, O, D)) =L= SUM((D), VC(C, D, O))  ;
+  	VISITED(O, D) .. 	SUM((C), VC(C, O, D)) + SUM((C), VC(C, D, O)) =G= V(O,D) ; 
+
+MODEL TRANSPORT /ALL/ ;
+SOLVE TRANSPORT USING LP MAXIMIZING Total_Length ;
