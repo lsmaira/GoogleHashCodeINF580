@@ -1,0 +1,19 @@
+import java.io.FileNotFoundException;
+
+
+public class Testing_Reader {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		new Reader ("paris_54000.txt");
+		for (int i=0; i<10; i++){
+			Node j = Reader.junctions.get(i);
+			System.out.print("Junction "+i+"\nNeighboors:");
+			
+			for (Node n: j.neighbors.keySet()){
+					System.out.printf("%3d",n.id);
+			}
+		}
+	}
+
+}

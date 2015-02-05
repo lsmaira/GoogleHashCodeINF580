@@ -7,16 +7,15 @@ class RandomSolver {
 
 	public static void main(String[] args) {
 
-		Reader reader = null;
 		final String fileName = "paris_54000.txt";
 		Set<Car> availableCars = new HashSet<Car>();
 		
 		try {
-			reader = new Reader(fileName);
+			new Reader(fileName);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		for(Car car : reader.cars) {
+		for(Car car : Reader.cars) {
 			availableCars.add(car);
 		}
 		
@@ -34,7 +33,7 @@ class RandomSolver {
 			}
 		}
 		
-		Writer writer = new Writer(reader.cars);
+		Writer writer = new Writer(Reader.cars);
 		writer.generateSolution("randomSolution.txt");
 	}
 
