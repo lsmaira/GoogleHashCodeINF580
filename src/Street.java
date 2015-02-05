@@ -9,7 +9,7 @@ class Street {
 	final boolean bothDirec;
 	private boolean used;
 	
-	public Street(int idx, Node o, Node d, int c, int g, int dir) {
+	public Street(int idx, Node o, Node d, int dir, int c, int g) {
 		id = idx;
 		orig = o;
 		dest = d;
