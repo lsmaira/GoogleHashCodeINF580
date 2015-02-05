@@ -22,12 +22,15 @@ class RandomSolver {
 		
 		while(! availableCars.isEmpty()) {
 			for(Car car : availableCars) {
+				boolean got = false;
 				for(Node neighbor : car.getPossibleMoves()) {
 					if(car.current.neighbors.get(neighbor).cost<car.remainingTime) {
 						car.goToNode(neighbor);
+						got = true;
 						break;
 					}
 				}
+				if(! got) availableCars.remove(car);
 			}
 		}
 		
