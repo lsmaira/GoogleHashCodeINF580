@@ -1,4 +1,6 @@
 import java.io.FileNotFoundException;
+import java.util.HashSet;
+import java.util.Set;
 
 
 class GreedySolver {
@@ -14,8 +16,13 @@ class GreedySolver {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		Set<Car> availableCars = new HashSet<Car>();
 		
-		
+		while(! availableCars.isEmpty()) {
+			for(Car car : availableCars) {
+				
+			}
+		}
 		
 		Writer writer = new Writer(reader.cars);
 		writer.generateSolution("randomSolution.txt");
